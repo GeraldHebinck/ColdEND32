@@ -47,6 +47,8 @@ byte            rem_stat_old = LOW;                     // Last remote state
 volatile byte   pulse = LOW;                            // Step pulse state
 float           rpm = 0.00;                             // Stepper RPM
 unsigned long   spit_start = 0;                         // Timestamp for spit start
+unsigned int    steps_per_rev = 200;
+unsigned int    microsteps = 16;
 
 
 // Display

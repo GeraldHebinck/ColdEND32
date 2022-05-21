@@ -148,8 +148,8 @@ void pumpControl() {
     timerAlarmEnable(stepTimer);
 #endif
 #ifdef MKS_GENL
-    int edge = round((rpm/60*6400*2));                  // Pulse time calculation for stepper to get the time in µs for a rising or falling edge
-    ITimer5.setFrequency(edge, stepPulse);                     // Set timer alarm to pulse length/2, autoreload = true
+    int edge = round((rpm/60*steps_per_rev*microsteps*2));      // Pulse time calculation for stepper to get the time in µs for a rising or falling edge
+    ITimer5.setFrequency(edge, stepPulse);                      // Set timer alarm to pulse length/2, autoreload = true
     ITimer5.resumeTimer();
 #endif
   }
