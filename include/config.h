@@ -24,6 +24,7 @@
 // #define LCD16X2                                       // Uncomment for 16x2 LCD or VFD with I2C Controller
 // #define LCD16X4                                       // Uncomment for 16x4 LCD or VFD with I2C Controller
 // #define FIX16X4                                       // Uncomment to fix some 16x4 LCD row 3 and 4 starting at wrong positions
+// #define CR10_STOCKDISPLAY                                 // Uncomment for OLED with ST7920 controller
 
 
 // Features
@@ -131,6 +132,25 @@
   #endif
 #endif
 
+#if defined CR10_STOCKDISPLAY
+  #define EXP1_06_PIN                23
+  #define EXP1_08_PIN                17
+  #define EXP1_09_PIN                31
+  #define BTN_EN1               EXP1_08_PIN
+  #define BTN_EN2               EXP1_06_PIN
+  #define BTN_ENC               EXP1_09_PIN
+  #define EXP1_03_PIN                29
+  #define EXP1_04_PIN                27
+  #define EXP1_05_PIN                25
+  #define LCD_CS                EXP1_04_PIN
+  #define LCD_DATA              EXP1_03_PIN
+  #define LCD_CLOCK             EXP1_05_PIN
+  #define OLED
+  #include <Arduino.h>
+  #include <U8g2lib.h>                                // Required library: https://github.com/olikraus/U8g2_Arduino
+  U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R0, LCD_CLOCK, LCD_DATA, LCD_CS); 
+#endif
+  
 
 #ifdef REMOTE_CTRL
   #define MOMENTARY_SWITCH                            // Remote control requires momentary switches
