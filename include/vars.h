@@ -19,7 +19,12 @@ float           spit_pot_old = 0.00;                    // Previous spit pot val
 unsigned long   prev_pot_read = 0;                      // Previous pot read loop
 unsigned long   curr_pot_read = 0;                      // Current pot read loop
 float           max_spit = MAX_SPIT_TIME;               // Convert MAX_SPIT_TIME to float
+#ifdef COLDEND32
 float           exp_scale = log(MAX_RPM/MIN_RPM)/4095;  // Exponential flow scaling to match a 12bit analogue value
+#endif
+#ifdef MKS_GENL
+float           exp_scale = log(MAX_RPM/MIN_RPM)/1023;  // Exponential flow scaling to match a 10bit analogue value
+#endif
 
 
 // Relais states

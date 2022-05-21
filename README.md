@@ -1,3 +1,7 @@
+# This Fork
+The idea is to use a MKS-GenL with a Mega2560 as a controller for the ColdEND.
+It is based on the V1.3 branch.
+
 # ColdEND32
 Firmware for ColdEND32 controller supporting various displays
 

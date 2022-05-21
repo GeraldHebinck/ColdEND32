@@ -12,7 +12,8 @@
 
 
 // Board
-#define COLDEND32                                     // Leave uncommented unless there are other boards to choose
+// #define COLDEND32                                     // Leave uncommented unless there are other boards to choose
+// #define MKS_GENL
 
 
 // Display
@@ -68,6 +69,26 @@
   #define OUT_5V_2 18                                 // 5V Output 2
   #define OUT_5V_3 5                                  // 5V Output 3
   #define OUT_5V_4 4                                  // 5V Output 4
+#endif
+
+#ifdef MKS_GENL
+  #define POT_MIST A5                                 // Mist potentiometer pin
+  #define POT_SPIT A9                                 // Spit potentiometer pin
+  #define IN_MIST 2                                  // Mist switch
+  #define IN_FAST 14                                  // Fast mode switch
+  #define IN_AIR 3                                   // Air only switch
+  #define IN_REM 14                                   // Remote control
+  #define OUT_DIR 55                                  // Direction pin
+  #define OUT_STEP 54                                 // Step pin
+  #define OUT_ENABLE 38                               // Enable pin
+  #define OUT_AIR 10                                   // Air valve pin
+  #define OUT_COOLANT 7                               // Coolant valve pin
+  #define OUT_LIFT 8                                 // Lift valve pin
+  #define OUT_SPIT_LED 4                             // Spit LED pin
+  #define OUT_5V_1 5                                 // 5V Output 1
+  #define OUT_5V_2 6                                 // 5V Output 2
+  #define OUT_5V_3 11                                  // 5V Output 3
+  #define OUT_5V_4 19                                  // 5V Output 4
 #endif
 
 

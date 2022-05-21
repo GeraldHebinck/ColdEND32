@@ -10,10 +10,19 @@
 
 */
 
+#include <Arduino.h>
 
 // Create hardware timer
+#ifdef COLDEND32
 hw_timer_t * stepTimer = NULL;
 portMUX_TYPE timerMux0 = portMUX_INITIALIZER_UNLOCKED;
+#endif
+#ifdef MKS_GENL
+#define USE_TIMER_5     true
+#include "TimerInterrupt.h"
+#include "ISR_Timer.h"
+ISR_Timer ISR_timer;
+#endif
 
 #include "config.h"
 #include "vars.h"
@@ -50,9 +59,21 @@ void setup() {
   digitalWrite(OUT_DIR, FLOW_DIR);                      // Set flow direction
   digitalWrite(OUT_ENABLE, HIGH);                       // Disable stepper
 
+  // Initialize outputs
+  digitalWrite(OUT_COOLANT, LOW);
+  digitalWrite(OUT_AIR, LOW);
+  digitalWrite(OUT_LIFT, LOW);
+  digitalWrite(OUT_SPIT_LED, LOW);
   // Timer setup
+#ifdef COLDEND32
   stepTimer = timerBegin(0, 80, true);                  // Use first timer at 80MHz/80 = 1µs, count up
   timerAttachInterrupt(stepTimer, &stepPulse, true);    // Attach stepPulse function to timer, edge (not level) triggered
+#endif
+#ifdef MKS_GENL
+  ITimer5.init();
+  ITimer5.attachInterrupt(1000000, stepPulse);
+  ITimer5.pauseTimer();
+#endif
 
   // Initialize display
   #ifdef OLED
